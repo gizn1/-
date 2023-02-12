@@ -7,20 +7,41 @@ GButton butt2(BTN_PIN2);
   int i = 0;
 LiquidCrystal lcd(7,8, 9, 10, 11 , 12);
 
-void sum(){
+void gorchitca(){
    butt2.tick();
 
-   lcd.setCursor(0,1);
-   Serial.println("gorchitca");
-    lcd.print("gorchitca");
-    if (butt2.isClick()) {                                // если кнопка была удержана (это для инкремента)
-   digitalWrite(5,1);                                        // увеличивать/уменьшать переменную value с шагом и интервалом
+    lcd.setCursor(0,1);
+    Serial.println("podsolnuh");
+    lcd.print("podsolnuh");
+    if (butt2.isClick()){
+      digitalWrite(5,0); 
+      while(true){
+     uint32_t tmr1; 
+     uint32_t tmr2;   
+   uint32_t  sec = millis() / 1000;      // полное количество секунд
+  int timeHours = (sec / 3600ul);        // часы
+  int timeMins = (sec % 3600ul) / 60ul;  // минуты
+
+Serial.println(timeHours);
+Serial.println(timeMins);
+Serial.println(sec);
+Serial.println();
+if (millis() - tmr1 > 1000 * 10 *3600 *9 ){
+   tmr1 = millis();
+  digitalWrite(6, !digitalRead(6));
+  
+  }
+
+
+
+}
+                                         // увеличивать/уменьшать переменную value с шагом и интервалом
                                  // для примера выведем в порт
   }
   
 }
 
-void sep(){
+void podsolnuh(){
     butt2.tick();
 
     lcd.setCursor(0,1);
@@ -45,13 +66,6 @@ if (millis() - tmr1 > 1000 * 10 *3600 *13 ){
   
   }
 
-if (millis() - tmr2 > 1000 * 10 *3600 *10 ){
-   tmr2 = millis();
-  digitalWrite(4,1);
-  delay(1000*30);
-  }
-
-digitalWrite(4,1);
 
 }
                                          // увеличивать/уменьшать переменную value с шагом и интервалом
@@ -84,8 +98,8 @@ void loop() {
   lcd.print("podsolnuh");// обязательная функция отработки. Должна постоянно опрашиваться
   func arr[2];
 
-  arr[0] = sum;
-  arr[1] = sep;
+  arr[0] = gorchitca;
+  arr[1] = podsolnuh;
   if (i>1){
     i = 0;
   }
